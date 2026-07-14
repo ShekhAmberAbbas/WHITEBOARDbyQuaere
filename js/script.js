@@ -122,7 +122,7 @@ else{
 }
 
 // hero terminal typing loop
-const codeStr=`$ codekata --weekly-rank
+const codeStr=`$ whiteboard --weekly-rank
 1. Aravind_K      ██████████ 2140 pts
 2. Vinitha_G      █████████░ 1985 pts
 3. Karthik_M      ████████░░ 1820 pts
