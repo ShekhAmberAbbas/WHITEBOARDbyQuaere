@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Full Stack Web Development — MERN | Quaere.tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0F5DA8;
+  --primary-dark:#0B4B89;
+  --primary-light:#5EA9E6;
+  --secondary:#8FC3E5;
+  --bg:#F8FBFE;
+  --bg-soft:#EEF5FB;
+  --surface:#FFFFFF;
+  --text:#0B1F38;
+  --text-light:#5C6D84;
+  --border:#DCE8F5;
+  --accent:#0F5DA8;
+  --accent-light:#3D8BD8;
+  --gold:#FFD166;
+  --green:#1E9E6C;
+  --shadow:0 20px 60px rgba(15,93,168,.12);
+  --shadow-lg:0 35px 80px rgba(15,93,168,.18);
+  --sans:'Manrope',sans-serif;
+  --disp:'Sora',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--disp);line-height:1.15;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+ul{list-style:none}
+::selection{background:var(--primary);color:#fff}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--mono);font-size:12.5px;color:var(--primary);letter-spacing:.04em;display:inline-block;margin-bottom:12px}
+.section{padding:88px 0}
+.section.soft{background:var(--bg-soft)}
+.section.band{background:linear-gradient(135deg,#0B1220 0%,#4b1acc 55%,#0B5FA8 100%);color:#fff}
+.section.band .eyebrow{color:#6EEBB4}
+
+/* ---------- reveal utility (shared brand micro-interaction) ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.lr-line{display:inline-block;overflow:hidden;vertical-align:top}
+.lr-word{display:inline-block;transform:translateY(115%);opacity:0;transition:transform .65s cubic-bezier(.16,1,.3,1),opacity .4s ease}
+.reveal.in .lr-word,.head.in .lr-word{transform:translateY(0);opacity:1}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:10px;padding:12px 24px;font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;transition:.2s;white-space:nowrap}
+.btn-solid{background:linear-gradient(135deg,#0B5FA8,#287FD1);box-shadow:0 20px 40px rgba(11,95,168,.30);color:#fff}
+.btn-solid:hover{background:var(--primary-dark);transform:translateY(-1px)}
+.btn-outline{border-color:var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary)}
+.btn-outline-light{border:1.5px solid rgba(255,255,255,.4);color:#fff}
+.btn-outline-light:hover{background:#fff;color:var(--text)}
+.btn-ghost{color:var(--text-light)}
+.btn-ghost:hover{color:var(--text)}
+.btn-lg{padding:14px 28px;font-size:15px}
+.btn-block{width:100%}
+
+/* ================= NAV (original, unchanged) ================= */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.72);backdrop-filter:blur(25px);border-bottom:1px solid rgba(11,95,168,.08);box-shadow:0 15px 40px rgba(11,95,168,.05)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo img{height:55px;width:auto;display:block}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links>a,.nav-item>a{font-size:14px;color:var(--text-light);transition:.2s;padding:10px 12px;display:inline-block}
+.nav-links>a:hover,.nav-item>a:hover{color:var(--text)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.burger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px}
+.burger span{width:22px;height:2px;background:var(--text)}
+.nav-item{position:relative}
+.mega{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);width:600px;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 24px 60px rgba(11,18,32,.14);padding:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;opacity:0;visibility:hidden;transition:opacity .2s ease,transform .2s ease;z-index:200}
+.nav-item:hover .mega,.nav-item:focus-within .mega{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.mega h5{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-light);margin-bottom:10px}
+.mega a{display:block;font-size:13.5px;padding:5px 0;color:var(--text)}
+.mega a:hover{color:var(--primary)}
+.mega-all{color:var(--primary)!important;font-weight:600}
+@media(max-width:980px){.mega{display:none}}
+@media(max-width:880px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:#fff;padding:20px 24px;border-bottom:1px solid var(--border);align-items:flex-start;z-index:150}
+  .nav-links.open .mega{display:none}
+}
+
+/* ================= PAGE HERO (breadcrumb banner) ================= */
+.page-hero{
+  position:relative;
+  overflow:hidden;
+  padding:64px 0 56px;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(145,198,232,.30), transparent 32%),
+    radial-gradient(circle at 85% 10%, rgba(11,95,168,.24), transparent 38%),
+    linear-gradient(180deg,#05172B,#082D52,#0D467A,#07233D);
+  color:#fff;
+}
+.page-hero::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;
+}
+.crumb{position:relative;z-index:2;font-family:var(--mono);font-size:12.5px;color:#9FC6EA;display:flex;gap:8px;align-items:center;margin-bottom:18px}
+.crumb a{color:#9FC6EA}
+.crumb a:hover{color:#fff}
+.crumb .sep{opacity:.5}
+.crumb .cur{color:var(--gold)}
+.page-hero h1{position:relative;z-index:2;font-size:clamp(28px,4.2vw,46px);font-weight:800;color:#fff;max-width:780px}
+.page-hero .sub{position:relative;z-index:2;color:#cbd5e1;font-size:15.5px;margin-top:14px;max-width:600px}
+.hero-badges{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hbadge{font-family:var(--mono);font-size:12px;color:#dbeafe;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:20px}
+
+/* ================= MAIN LAYOUT ================= */
+.course-layout{display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;padding-top:56px}
+.course-main h2{font-size:22px;font-weight:700;margin:44px 0 16px}
+.course-main h2:first-child{margin-top:0}
+.course-main p{color:var(--text-light);font-size:14.5px;margin-bottom:14px}
+.check-list{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;margin-top:6px}
+.check-list li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;color:var(--text)}
+.check-list li::before{content:"✓";color:var(--green);font-weight:700;flex-shrink:0}
+@media(max-width:640px){.check-list{grid-template-columns:1fr}}
+
+/* sidebar */
+.sidebar{position:sticky;top:92px;display:flex;flex-direction:column;gap:20px}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:var(--shadow)}
+.info-card h3{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--text-light);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.info-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.info-row .ic{width:36px;height:36px;border-radius:9px;background:rgba(11,95,168,.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.info-row .lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-light)}
+.info-row .val{font-size:14px;font-weight:600;color:var(--text);margin-top:2px}
+.price-row{display:flex;align-items:baseline;gap:10px;margin:18px 0 16px}
+.price-row strong{font-family:var(--disp);font-size:26px;color:var(--accent)}
+.price-row del{color:var(--text-light);font-size:14px}
+.feat-list li{display:flex;justify-content:space-between;font-size:13px;padding:10px 0;border-bottom:1px dashed var(--border);color:var(--text-light)}
+.feat-list li span:last-child{color:var(--text);font-weight:600}
+.feat-list li:last-child{border-bottom:none}
+
+/* ================= SYLLABUS ACCORDION ================= */
+.syllabus{margin-top:6px}
+.mod{border:1px solid var(--border);border-radius:14px;margin-bottom:12px;background:#fff;overflow:hidden;transition:border-color .2s}
+.mod.open{border-color:var(--primary)}
+.mod-head{width:100%;display:flex;align-items:center;gap:16px;padding:18px 20px;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--sans)}
+.mod-num{font-family:var(--mono);font-size:12px;color:var(--primary);background:rgba(11,95,168,.1);border-radius:8px;padding:6px 10px;flex-shrink:0}
+.mod-title{flex:1}
+.mod-title strong{display:block;font-size:14.5px;font-weight:700;color:var(--text)}
+.mod-title span{font-size:12px;color:var(--text-light)}
+.mod-plus{font-family:var(--mono);font-size:18px;color:var(--primary);transition:transform .3s;flex-shrink:0}
+.mod.open .mod-plus{transform:rotate(45deg)}
+.mod-panel{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.mod-panel-inner{padding:0 20px 20px 66px}
+.mod-topics{display:flex;flex-wrap:wrap;gap:8px}
+.mod-topics span{font-family:var(--mono);font-size:11.5px;color:var(--primary-dark);background:var(--bg-soft);border:1px solid var(--border);padding:5px 10px;border-radius:6px}
+
+/* ================= TRAINER ================= */
+.trainer-card{display:flex;gap:26px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 1px 2px rgba(11,18,32,.03)}
+.trainer-avatar{width:92px;height:92px;border-radius:50%;background:linear-gradient(135deg,var(--primary-light),var(--primary));flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--disp);font-size:30px;font-weight:700}
+.trainer-info h4{font-size:16.5px;font-weight:700}
+.trainer-info .role{font-size:12.5px;color:var(--primary);font-family:var(--mono);margin:4px 0 10px}
+.trainer-info p{font-size:13px;color:var(--text-light)}
+.trainer-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.trainer-tags span{font-size:11px;background:var(--bg-soft);border:1px solid var(--border);padding:4px 10px;border-radius:14px;color:var(--text-light)}
+@media(max-width:560px){.trainer-card{flex-direction:column;text-align:center}.trainer-tags{justify-content:center}}
+
+/* ================= STATS BAND ================= */
+.stats-grid{grid-template-columns:repeat(4,1fr);text-align:center;display:grid;gap:28px}
+.stat strong{font-family:var(--disp);font-size:clamp(26px,3vw,38px);color:#fff;display:block;text-shadow:0 0 20px rgba(59,130,246,.35)}
+.stat span{font-size:13px;color:rgba(255,255,255,.7)}
+@media(max-width:640px){.stats-grid{grid-template-columns:1fr 1fr}}
+
+/* ================= GROW YOUR CAREER ================= */
+.career-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+.role-cards{display:flex;flex-direction:column;gap:12px}
+.role-card{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 20px;transition:.2s}
+.role-card:hover{border-color:var(--primary);transform:translateX(4px)}
+.role-card .rname{font-size:14px;font-weight:600}
+.role-card .rsalary{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:600}
+.partners-box{background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px}
+.partners-box h4{font-size:12px;font-family:var(--mono);text-transform:uppercase;color:var(--text-light);margin-bottom:16px}
+.partner-tags{display:flex;flex-wrap:wrap;gap:10px}
+.partner-tags span{font-size:12.5px;background:var(--bg-soft);border:1px solid var(--border);padding:7px 14px;border-radius:8px;color:var(--text)}
+@media(max-width:900px){.career-grid{grid-template-columns:1fr}}
+
+/* ================= FINAL CTA ================= */
+.final-cta{background:#fff;border:1px solid var(--border);border-radius:20px;padding:44px;display:flex;justify-content:space-between;align-items:center;gap:24px;box-shadow:var(--shadow)}
+.final-cta h3{font-size:20px;margin-bottom:6px}
+.final-cta p{color:var(--text-light);font-size:14px}
+@media(max-width:700px){.final-cta{flex-direction:column;text-align:center}}
+
+@media(max-width:960px){
+  .course-layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+}
+
+/* ================= FOOTER (original, unchanged) ================= */
+.footer{background:radial-gradient(circle at top,rgba(94,169,230,.18),transparent 45%),linear-gradient(180deg,#08233F 0%,#04182E 100%);color:#8A93AC;padding:60px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px;padding-bottom:20px}
+.f-brand .logo{display:block;margin-bottom:12px;color:#fff;font-family:var(--disp);font-weight:700;font-size:20px}
+.footer p{font-size:13px;color:#8A93AC;line-height:1.7}
+.f-social{display:flex;gap:8px;margin:16px 0}
+.f-social a{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:var(--mono);color:#8A93AC}
+.f-social a:hover{background:var(--primary);color:#fff}
+.footer h5{font-size:13px;margin-bottom:14px;color:#fff}
+.footer ul li{margin-bottom:9px}
+.footer ul li a{font-size:13px;color:#8A93AC}
+.footer ul li a:hover{color:#6EEBB4}
+.f-contact{font-family:var(--mono);font-size:12.5px;color:#8A93AC;margin-top:6px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:30px;padding:20px 0;text-align:center;font-size:12px;color:#5B6472}
+
+/* ---- lamp signature (original) ---- */
+.lamp-section{position:relative;width:100%;height:40vh;min-height:280px;overflow:hidden;display:flex;justify-content:center;align-items:flex-start;background:radial-gradient(circle at 50% -15%,rgba(94,169,230,.18) 0%,rgba(94,169,230,.08) 25%,transparent 55%),radial-gradient(circle at center,rgba(11,95,168,.12),transparent 65%),linear-gradient(180deg,#08233F 0%,#06213C 35%,#04182E 100%)}
+.lamp-wrapper{width:100%;max-width:1400px;height:100%;position:relative}
+.lamp-top-line{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:62%;height:3px;border-radius:20px;background:#5EA9E6;box-shadow:0 0 10px #5EA9E6,0 0 30px rgba(94,169,230,.5),0 0 60px rgba(94,169,230,.35)}
+.lamp-glow-back{position:absolute;top:-55%;left:50%;transform:translateX(-50%);width:70vw;height:70vw;max-width:900px;max-height:900px;border-radius:50%;background:radial-gradient(circle,rgba(94,169,230,.55) 0%,rgba(94,169,230,.28) 22%,rgba(94,169,230,.12) 42%,rgba(94,169,230,.05) 58%,transparent 76%);filter:blur(95px);opacity:.95}
+.lamp-glow{position:absolute;max-width:650px;max-height:650px;top:-38%;left:50%;transform:translateX(-50%);width:45vw;height:45vw;border-radius:50%;background:radial-gradient(circle,rgba(94,169,230,.95),rgba(94,169,230,.42) 30%,rgba(94,169,230,.18) 52%,rgba(94,169,230,.08) 66%,transparent 78%);filter:blur(80px);animation:lampPulse 5s ease-in-out infinite}
+.lamp-glow-back{animation:lampPulse 5s ease-in-out infinite}
+@keyframes lampPulse{0%{transform:translateX(-50%) scale(1);opacity:.92}50%{transform:translateX(-50%) scale(1.08);opacity:1}100%{transform:translateX(-50%) scale(1);opacity:.92}}
+.shadow-mask{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,transparent 28%,rgba(8,35,63,.12) 45%,rgba(8,35,63,.35) 60%,rgba(4,24,46,.72) 80%,#04182E 100%)}
+.lamp-content{position:absolute;width:100%;top:34%;transform:translateY(-15%);left:0;display:flex;justify-content:center;text-align:center;z-index:20}
+.lamp-title{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin:0;user-select:none;opacity:0}
+.lamp-main{position:relative;display:block;font-family:Inter,sans-serif;font-size:clamp(52px,7vw,140px);font-weight:900;line-height:.9;letter-spacing:-3px;text-transform:uppercase;background:linear-gradient(90deg,#1d05a3 0%,#6d56db 18%,#11acee 36%,#4d3cd0 50%,#401388 65%,#4867d7 82%,#6583e5 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 8s linear infinite}
+.lamp-sub{position:relative;display:block;margin-top:16px;font-size:clamp(11px,1.1vw,18px);font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#dbeafe;opacity:.92}
+@keyframes gradientFlow{from{background-position:0% center}to{background-position:300% center}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo">
+      <img src="img/logo-quaere.png" alt="Quaere">
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <div class="nav-item">
+        <a href="index.html#courses">Courses</a>
+        <div class="mega">
+          <div><h5>Popular</h5>
+            <a href="index.html#courses">Data Science</a>
+            <a href="index.html#courses">AI / ML</a>
+            <a href="full-stack-mern.html">Full Stack Web Dev</a>
+          </div>
+          <div><h5>More tracks</h5>
+            <a href="index.html#courses">DevOps &amp; Cloud</a>
+            <a href="index.html#courses">Cyber Security</a>
+            <a href="index.html#courses">Mobile Dev</a>
+          </div>
+          <div><h5>Fast-track</h5>
+            <a href="index.html#courses">LiveClass Premium</a>
+            <a href="index.html#courses">Business Analytics</a>
+            <a href="index.html#courses" class="mega-all">View all courses →</a>
+          </div>
+        </div>
+      </div>
+      <a href="index.html#process">How it works</a>
+      <a href="index.html#practice">Practice</a>
+      <a href="index.html#enterprise">Enterprise</a>
+      <a href="index.html#contact">Get Help</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-ghost">Log in</a>
+      <a href="#" class="btn btn-solid">Sign up free</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb">
+      <a href="index.html">Home</a><span class="sep">/</span>
+      <a href="index.html#courses">Courses</a><span class="sep">/</span>
+      <span class="cur">Full Stack Web Development — MERN</span>
+    </div>
+    <h1>Full Stack Web Development — MERN</h1>
+    <p class="sub">Go from HTML basics to shipping production-grade MongoDB, Express, React &amp; Node.js applications — live, mentor-led, with placement assistance built in.</p>
+    <div class="hero-badges">
+      <span class="hbadge">🕒 5 Months</span>
+      <span class="hbadge">🎓 Beginner to Advanced</span>
+      <span class="hbadge">💬 Hindi + English</span>
+      <span class="hbadge">👥 5.6k+ Enrolled</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAIN CONTENT ================= -->
+<section class="section">
+  <div class="wrap">
+    <div class="course-layout">
+
+      <!-- MAIN COLUMN -->
+      <div class="course-main">
+        <h2>About this course</h2>
+        <p>The MERN track takes you from writing your first line of HTML to deploying a full production web application, using the same stack — MongoDB, Express, React and Node.js — that powers products at companies like Meta, Uber and Airbnb. Every module pairs live instruction with a real feature you build yourself, so by graduation your portfolio is doing the talking for you.</p>
+        <p>Cohorts are capped and mentor-led, with weekly code reviews, 1:1 doubt sessions, and a capstone project built alongside a hiring-partner brief.</p>
+
+        <h2>What you'll learn</h2>
+        <ul class="check-list">
+          <li>Semantic HTML5, modern CSS &amp; responsive layouts</li>
+          <li>JavaScript ES6+, async programming &amp; the DOM</li>
+          <li>Building component-driven UIs with React &amp; Hooks</li>
+          <li>State management with Redux Toolkit &amp; Context API</li>
+          <li>REST API design with Node.js &amp; Express</li>
+          <li>Authentication &amp; authorization using JWT</li>
+          <li>Schema design &amp; queries with MongoDB &amp; Mongoose</li>
+          <li>Deploying full-stack apps with CI/CD pipelines</li>
+        </ul>
+
+        <h2>Syllabus</h2>
+        <p>Eight modules, each ending in a shippable feature. Click a module to see what's inside.</p>
+        <div class="syllabus" id="syllabus">
+          <!-- modules injected by JS -->
+        </div>
+
+        <h2>Your mentor</h2>
+        <div class="trainer-card">
+          <div class="trainer-avatar">AV</div>
+          <div class="trainer-info">
+            <h4>Aakash Verma</h4>
+            <div class="role">Senior Full Stack Engineer · ex-Flipkart, ex-Zoho</div>
+            <p>8+ years building and scaling production web apps, and 4 years mentoring live cohorts through the MERN stack — from first component to first offer letter.</p>
+            <div class="trainer-tags">
+              <span>React</span><span>Node.js</span><span>MongoDB</span><span>System Design</span><span>Interview Prep</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="info-card">
+          <h3>Course Info</h3>
+          <div class="info-row"><div class="ic">🧑‍🏫</div><div><div class="lbl">Mentor</div><div class="val">Aakash Verma</div></div></div>
+          <div class="info-row"><div class="ic">🌐</div><div><div class="lbl">Category</div><div class="val">Web Development</div></div></div>
+          <div class="info-row"><div class="ic">👥</div><div><div class="lbl">Enrolled</div><div class="val">5,600+ learners</div></div></div>
+          <div class="info-row"><div class="ic">🕒</div><div><div class="lbl">Duration</div><div class="val">5 Months</div></div></div>
+          <div class="price-row"><strong>₹38,000</strong><del>₹50,000</del></div>
+          <a href="#" class="btn btn-solid btn-block">Enroll now →</a>
+        </div>
+
+        <div class="info-card">
+          <h3>Course Features</h3>
+          <ul class="feat-list">
+            <li><span>Live Sessions</span><span>94</span></li>
+            <li><span>Projects</span><span>12</span></li>
+            <li><span>Language</span><span>Hindi + English</span></li>
+            <li><span>Skill Level</span><span>Beginner–Advanced</span></li>
+            <li><span>Mode</span><span>Online (Live)</span></li>
+            <li><span>Certificate</span><span>Yes</span></li>
+            <li><span>Placement Assistance</span><span>Yes</span></li>
+            <li><span>Doubt Support</span><span>1:1 Mentor</span></li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS BAND ================= -->
+<section class="section band">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow scramble">BY THE NUMBERS</span>
+      <h2 class="line-reveal">This cohort, in numbers</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat reveal"><strong data-count="5600" data-suffix="+">0</strong><span>Learners enrolled</span></div>
+      <div class="stat reveal"><strong data-count="94">0</strong><span>Live sessions</span></div>
+      <div class="stat reveal"><strong data-count="12">0</strong><span>Hands-on projects</span></div>
+      <div class="stat reveal"><strong data-count="150" data-suffix="+">0</strong><span>Hiring partners</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GROW YOUR CAREER ================= -->
+<section class="section soft" id="career">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow scramble">WHERE THIS LEADS</span>
+      <h2 class="line-reveal">Grow your career</h2>
+      <p>Roles our MERN graduates typically move into, and what companies are paying for them today.</p>
+    </div>
+    <div class="career-grid">
+      <div class="role-cards reveal">
+        <div class="role-card"><span class="rname">Frontend Developer</span><span class="rsalary">₹4 – 7 LPA</span></div>
+        <div class="role-card"><span class="rname">Backend Developer (Node.js)</span><span class="rsalary">₹5 – 8 LPA</span></div>
+        <div class="role-card"><span class="rname">Full Stack Developer</span><span class="rsalary">₹6 – 12 LPA</span></div>
+        <div class="role-card"><span class="rname">MERN Stack Engineer</span><span class="rsalary">₹7 – 14 LPA</span></div>
+      </div>
+      <div class="partners-box reveal">
+        <h4>Hiring partners who've recruited from this track</h4>
+        <div class="partner-tags">
+          <span>Infosys</span><span>TCS</span><span>Wipro</span><span>HCL</span><span>Cognizant</span><span>Accenture</span><span>Zoho</span><span>Capgemini</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="section">
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <div>
+        <h3>Next cohort starts soon</h3>
+        <p>Seats are limited to keep mentor time 1:1. Reserve yours before the batch fills.</p>
+      </div>
+      <a href="#" class="btn btn-solid btn-lg">Enroll now →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="wrap footer-grid">
+    <div class="f-brand">
+      <a href="index.html" class="logo">Quaere<span></span>Tech Hub</a>
+      <p>India's leading EdTech platform — live tech courses in Hindi and English languages. Powered by Quaere Etechnologies Pvt. Ltd.</p>
+      <div class="f-social">
+        <a href="#" aria-label="Facebook">fb</a><a href="#" aria-label="X">x</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="YouTube">yt</a><a href="#" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+    <div class="f-col">
+      <h5>Courses</h5>
+      <ul><li><a href="index.html#courses">Data Science</a></li><li><a href="full-stack-mern.html">Full Stack Dev</a></li><li><a href="index.html#courses">AI / ML</a></li><li><a href="index.html#courses">Cyber Security</a></li><li><a href="index.html#courses">DevOps &amp; Cloud</a></li></ul>
+    </div>
+    <div class="f-col">
+      <h5>Platform</h5>
+      <ul><li><a href="index.html#practice">WhiteBoard</a></li><li><a href="#">Mock Interviews</a></li><li><a href="#">Placement Portal</a></li></ul>
+    </div>
+    <div class="f-col">
+      <h5>Company</h5>
+      <ul><li><a href="#">About Quaere</a></li><li><a href="#">Careers</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul>
+      <p class="f-contact">training@quaeretech.com<br>+91 9196586951</p>
+    </div>
+  </div>
+  <section class="lamp-section">
+    <div class="lamp-wrapper">
+      <div class="lamp-top-line"></div>
+      <div class="lamp-glow-back"></div>
+      <div class="lamp-glow"></div>
+      <div class="shadow-mask"></div>
+      <div class="lamp-content">
+        <h1 class="lamp-title" id="lampTitle">
+          <span class="lamp-main">WHITEBOARD</span>
+          <span class="lamp-sub">AN LMS BY QUAERE ETECHNOLOGIES PVT. LTD.</span>
+        </h1>
+      </div>
+    </div>
+  </section>
+  <div class="footer-bottom">© 2026 Quaere Etechnologies Pvt. Ltd. All rights reserved.</div>
+</footer>
+
+<script src="js/fullstackmern.js"></script>
+</body>
+</html>
