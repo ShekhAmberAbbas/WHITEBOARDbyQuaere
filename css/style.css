@@ -48,6 +48,10 @@
 --gold:#FFD166;
 
 }
+.gst{
+    font-size: 10px;
+    color: red;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
