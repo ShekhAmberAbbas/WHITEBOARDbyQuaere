@@ -1,11 +1,23 @@
-
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const pointerFine=window.matchMedia('(pointer: fine)').matches;
 
 // mobile nav
-const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
-burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+const burger = document.getElementById("burger");
+const navLinks = document.getElementById("navLinks");
+
+if (burger && navLinks) {
+
+    burger.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+        });
+    });
+
+}
 
 // course filter chips
 const chips=document.querySelectorAll('.chip'),cards=document.querySelectorAll('.c-card');
@@ -20,19 +32,42 @@ chips.forEach(chip=>chip.addEventListener('click',()=>applyFilter(chip.dataset.f
 function goToCourses(filter){ applyFilter(filter); }
 
 // testimonial carousel
-function scrollCar(dir){document.getElementById('carousel').scrollBy({left:dir*320,behavior:'smooth'});}
+function scrollCar(dir){
+
+    const carousel = document.getElementById("carousel");
+
+    if(!carousel) return;
+
+    carousel.scrollBy({
+        left: dir * 320,
+        behavior: "smooth"
+    });
+
+}
 
 // marquee content
 const skills=['Python','JavaScript','React','Node.js','AWS','Docker','SQL','Flutter','Java','TensorFlow','Figma','Power BI'];
 const companies=['Infosys','TCS','Wipro','HCL','Cognizant','Accenture','Amazon','Zoho','PayPal','Capgemini','Siemens'];
-function buildMarquee(id,list){
-  const el=document.getElementById(id);
-  const html=list.map(s=>`<span>${s}</span><span class="dot">✦</span>`).join('');
-  el.innerHTML=html+html;
-  if(reduceMotion) el.style.animation='none';
+function buildMarquee(id, list) {
+
+    const el = document.getElementById(id);
+
+    if (!el) return;
+
+    const html = list
+        .map(s => `<span>${s}</span><span class="dot">✦</span>`)
+        .join("");
+
+    el.innerHTML = html + html;
+
+    if (reduceMotion) {
+        el.style.animation = "none";
+    }
+
 }
-buildMarquee('skillsTrack',skills);
-buildMarquee('logosTrack',companies);
+
+buildMarquee("skillsTrack", skills);
+buildMarquee("logosTrack", companies);
 
 // scroll reveal
 const revealEls=document.querySelectorAll('.reveal');
@@ -127,8 +162,10 @@ const codeStr=`$ whiteboard --weekly-rank
 2. Vinitha_G      █████████░ 1985 pts
 3. Karthik_M      ████████░░ 1820 pts
 4. You            ███████░░░ 1640 pts`;
-const termCode=document.getElementById('termCode'),termStatus=document.getElementById('termStatus');
-if(reduceMotion){termCode.textContent=codeStr;termStatus.textContent='✓ +50 XP earned this session';}
+const termCode=document.getElementById('termCode')
+const termStatus=document.getElementById('termStatus');
+if(termCode && termStatus){
+  if(reduceMotion){termCode.textContent=codeStr;termStatus.textContent='✓ +50 XP earned this session';}
 else{
   let i=0;
   function typeLoop(){
@@ -141,6 +178,7 @@ else{
     }
   }
   typeLoop();
+}
 }
 
 // hover tilt on hero terminal card
@@ -186,10 +224,11 @@ if(fWord){
   }
 }
 
+if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
 
-
-gsap.registerPlugin(ScrollTrigger);
-
+    // Put ALL your GSAP animations here
+    
 /* Hero Timeline */
 
 const hero = gsap.timeline();
@@ -257,19 +296,21 @@ duration:1
 
 /* Glow */
 
-const glow=document.querySelector(".mouse-glow");
+const glow = document.querySelector(".mouse-glow");
 
-document.addEventListener("mousemove",(e)=>{
+if(glow){
 
-gsap.to(glow,{
+    document.addEventListener("mousemove",(e)=>{
 
-left:e.clientX,
-top:e.clientY,
-duration:.4
+        gsap.to(glow,{
+            left:e.clientX,
+            top:e.clientY,
+            duration:.4
+        });
 
-});
+    });
 
-});
+}
 
 /* Magnetic Buttons */
 
@@ -518,6 +559,8 @@ duration:1.4,
 ease:"power4.out"
 
 });
+
+}
 
 
 // ===============   LAMP JS =================

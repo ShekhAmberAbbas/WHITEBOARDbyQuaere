@@ -5,21 +5,258 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLink
 
 // ---- syllabus data (from the C Programming SLM, theory-only) & render ----
 const modules=[
-  {t:"Introduction to Programming & C Fundamentals",d:"Hour 01",topics:["What is Programming?","History of C","Compilation Process","Compiler vs Interpreter","IDE Setup","Tokens & Keywords"]},
-  {t:"Variables, Data Types & Input/Output",d:"Hour 02",topics:["Variables","Naming Rules","Primitive Data Types","printf() & scanf()","Type Casting","Constants"]},
-  {t:"Operators & Expressions",d:"Hour 03",topics:["Arithmetic Operators","Relational & Logical Operators","Bitwise Operators","Operator Precedence","Associativity"]},
-  {t:"Decision Making",d:"Hour 04",topics:["if / if-else","Nested if","else-if Ladder","switch-case","Menu Driven Programs"]},
-  {t:"Loops",d:"Hour 05",topics:["for Loop","while Loop","do-while Loop","Nested Loops","break & continue"]},
-  {t:"Number Logic Building",d:"Hour 06",topics:["Algorithm Development","Dry Run Technique","Mathematical Logic"]},
-  {t:"Pattern Programming",d:"Hour 07",topics:["Nested Loop Logic","Character vs Number Patterns"]},
-  {t:"Functions",d:"Hour 08",topics:["Declaration & Definition","Call by Value","Storage Classes","Recursive Functions","Scope & Lifetime"]},
-  {t:"Arrays",d:"Hour 09",topics:["One-Dimensional Arrays","Memory Representation","Traversing Arrays","2D & Multidimensional Arrays"]},
-  {t:"Searching & Sorting",d:"Hour 10",topics:["Linear Search","Binary Search","Bubble Sort","Selection Sort","Time Complexity"]},
-  {t:"Strings",d:"Hour 11",topics:["Character Arrays","strlen()","strcpy()","strcat()","strcmp()","String Traversal"]},
-  {t:"Pointers & Dynamic Memory",d:"Hour 12",topics:["Memory Address","Pointer Arithmetic","Arrays & Pointers","malloc() / calloc() / free()"]},
-  {t:"Structures, Unions & File Handling",d:"Hour 13",topics:["Structures","Nested Structures","Unions","typedef","fopen() / fclose()","Text & Binary Files"]},
-  {t:"Mini Project Development",d:"Hour 14",topics:["Student Management System","Project Guidelines","Applying Every Concept Together"]},
-  {t:"Debugging, Best Practices & Final Assessment",d:"Hour 15",topics:["Common Compilation Errors","Runtime & Logical Errors","Debugging Techniques","Coding Standards","Final Assessment"]}
+  {
+    t: "Introduction to Web Technologies & HTML Fundamentals",
+    d: "Hour 01",
+    topics: [
+      "Internet & Web",
+      "Website vs Web Application",
+      "Client-Server Architecture",
+      "Frontend, Backend & Full Stack",
+      "VS Code Setup",
+      "First Web Page",
+      "HTML Structure"
+    ]
+  },
+  {
+    t: "HTML Fundamentals & Head Tags",
+    d: "Hour 02",
+    topics: [
+      "HTML Structure",
+      "Elements & Attributes",
+      "Head Tags"
+    ]
+  },
+  {
+    t: "Text Formatting & Lists",
+    d: "Hour 03",
+    topics: [
+      "Headings & Paragraphs",
+      "Text Formatting Tags",
+      "Lists",
+      "Quotations",
+      "HTML Entities"
+    ]
+  },
+  {
+    t: "Hyperlinks & Multimedia",
+    d: "Hour 04",
+    topics: [
+      "Hyperlinks",
+      "Images",
+      "Audio & Video",
+      "Iframe",
+      "Favicon"
+    ]
+  },
+  {
+    t: "Tables, Forms & Semantic HTML",
+    d: "Hour 05-06",
+    topics: [
+      "HTML Tables",
+      "HTML Forms",
+      "Input Types",
+      "Form Validation",
+      "Semantic Tags"
+    ]
+  },
+  {
+    t: "Div & Semantic Tags",
+    d: "Hour 07",
+    topics: [
+      "Div Tag",
+      "Inline & Block Level Elements",
+      "Semantic Tags"
+    ]
+  },
+  {
+    t: "CSS Fundamentals",
+    d: "Hour 08",
+    topics: [
+      "CSS Introduction",
+      "Types of CSS",
+      "Selectors",
+      "Colors & Units",
+      "CSS Priority"
+    ]
+  },
+  {
+    t: "Styling & CSS Box Model",
+    d: "Hour 09",
+    topics: [
+      "Font Properties",
+      "Text Styling",
+      "Backgrounds",
+      "Borders",
+      "Shadows",
+      "CSS Box Model"
+    ]
+  },
+  {
+    t: "CSS Layout",
+    d: "Hour 10",
+    topics: [
+      "Display Property",
+      "Position Property",
+      "Float & Clear",
+      "Z-Index",
+      "Visibility"
+    ]
+  },
+  {
+    t: "Flexbox & Grid",
+    d: "Hour 11",
+    topics: [
+      "Flex Container",
+      "Flex Items",
+      "Alignment",
+      "Spacing",
+      "Responsive Layouts"
+    ]
+  },
+  {
+    t: "Responsive Design",
+    d: "Hour 12",
+    topics: [
+      "Viewport",
+      "Media Queries",
+      "Responsive Images",
+      "CSS Units",
+      "Mobile-First Design"
+    ]
+  },
+  {
+    t: "CSS Animation",
+    d: "Hour 13",
+    topics: [
+      "Transitions",
+      "Transform",
+      "Animations",
+      "Keyframes",
+      "Hover Effects"
+    ]
+  },
+  {
+    t: "Bootstrap Basics",
+    d: "Hour 14",
+    topics: [
+      "Bootstrap Introduction",
+      "Installation",
+      "Containers",
+      "Grid System",
+      "Breakpoints"
+    ]
+  },
+  {
+    t: "Bootstrap Components & Utilities",
+    d: "Hour 15",
+    topics: [
+      "Navbar",
+      "Cards",
+      "Buttons",
+      "Forms",
+      "Carousel",
+      "Modal",
+      "Spacing Utilities",
+      "Color Utilities",
+      "Display Utilities",
+      "Flex Utilities",
+      "Bootstrap Icons"
+    ]
+  },
+  {
+    t: "Mini Project Development",
+    d: "Hour 16",
+    topics: [
+      "Project Planning",
+      "Layout Design",
+      "Responsive Design",
+      "Testing",
+      "Debugging"
+    ]
+  },
+  {
+    t: "Website Project 1",
+    d: "Hour 17",
+    topics: [
+      "Landing Page Design",
+      "Responsive Layout",
+      "Bootstrap Components"
+    ]
+  },
+  {
+    t: "Website Project 2",
+    d: "Hour 18",
+    topics: [
+      "Business Website",
+      "Responsive Sections",
+      "Navigation Design"
+    ]
+  },
+  {
+    t: "Website Project 3",
+    d: "Hour 19",
+    topics: [
+      "Portfolio Website",
+      "Animations",
+      "Interactive UI"
+    ]
+  },
+  {
+    t: "Website Project 4",
+    d: "Hour 20",
+    topics: [
+      "Education Website",
+      "Forms",
+      "Bootstrap Grid"
+    ]
+  },
+  {
+    t: "Website Project 5",
+    d: "Hour 21",
+    topics: [
+      "Corporate Website",
+      "Advanced Layout",
+      "Responsive Design"
+    ]
+  },
+  {
+    t: "Code Optimization & Review",
+    d: "Hour 22",
+    topics: [
+      "Clean Code",
+      "CSS Optimization",
+      "Bootstrap Best Practices"
+    ]
+  },
+  {
+    t: "Project Review & Debugging",
+    d: "Hour 23",
+    topics: [
+      "Debugging",
+      "Cross Browser Testing",
+      "Performance Improvements"
+    ]
+  },
+  {
+    t: "Final Project Enhancement",
+    d: "Hour 24",
+    topics: [
+      "UI Improvements",
+      "Responsive Fixes",
+      "Project Completion"
+    ]
+  },
+  {
+    t: "Final Assessment & Portfolio",
+    d: "Hour 25",
+    topics: [
+      "Project Presentation",
+      "Portfolio Building",
+      "Interview Preparation",
+      "Course Wrap-up"
+    ]
+  }
 ];
 const syllabusEl=document.getElementById('syllabusList');
 syllabusEl.innerHTML=modules.map((m,i)=>`
