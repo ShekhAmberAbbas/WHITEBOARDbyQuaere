@@ -4,7 +4,24 @@ burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 
 // ---- syllabus data (from the C Programming SLM, theory-only) & render ----
-const modules=[
+const modules1=[
+  {t:"Introduction to Programming & C Fundamentals",d:"Hour 01",topics:["What is Programming?","History of C","Compilation Process","Compiler vs Interpreter","IDE Setup","Tokens & Keywords"]},
+  {t:"Variables, Data Types & Input/Output",d:"Hour 02",topics:["Variables","Naming Rules","Primitive Data Types","printf() & scanf()","Type Casting","Constants"]},
+  {t:"Operators & Expressions",d:"Hour 03",topics:["Arithmetic Operators","Relational & Logical Operators","Bitwise Operators","Operator Precedence","Associativity"]},
+  {t:"Decision Making",d:"Hour 04",topics:["if / if-else","Nested if","else-if Ladder","switch-case","Menu Driven Programs"]},
+  {t:"Loops",d:"Hour 05",topics:["for Loop","while Loop","do-while Loop","Nested Loops","break & continue"]},
+  {t:"Number Logic Building",d:"Hour 06",topics:["Algorithm Development","Dry Run Technique","Mathematical Logic"]},
+  {t:"Pattern Programming",d:"Hour 07",topics:["Nested Loop Logic","Character vs Number Patterns"]},
+  {t:"Functions",d:"Hour 08",topics:["Declaration & Definition","Call by Value","Storage Classes","Recursive Functions","Scope & Lifetime"]},
+  {t:"Arrays",d:"Hour 09",topics:["One-Dimensional Arrays","Memory Representation","Traversing Arrays","2D & Multidimensional Arrays"]},
+  {t:"Searching & Sorting",d:"Hour 10",topics:["Linear Search","Binary Search","Bubble Sort","Selection Sort","Time Complexity"]},
+  {t:"Strings",d:"Hour 11",topics:["Character Arrays","strlen()","strcpy()","strcat()","strcmp()","String Traversal"]},
+  {t:"Pointers & Dynamic Memory",d:"Hour 12",topics:["Memory Address","Pointer Arithmetic","Arrays & Pointers","malloc() / calloc() / free()"]},
+  {t:"Structures, Unions & File Handling",d:"Hour 13",topics:["Structures","Nested Structures","Unions","typedef","fopen() / fclose()","Text & Binary Files"]},
+  {t:"Mini Project Development",d:"Hour 14",topics:["Student Management System","Project Guidelines","Applying Every Concept Together"]},
+  {t:"Debugging, Best Practices & Final Assessment",d:"Hour 15",topics:["Common Compilation Errors","Runtime & Logical Errors","Debugging Techniques","Coding Standards","Final Assessment"]}
+];
+const modules2=[
   {
     t: "Introduction to Web Technologies & HTML Fundamentals",
     d: "Module 01",
@@ -192,7 +209,14 @@ const modules=[
   }
 ]
 const syllabusEl=document.getElementById('syllabusList');
-syllabusEl.innerHTML=modules.map((m,i)=>`
+var c=syllabusEl.dataset.userId
+if(c === "modules2"){
+    syllabus = modules2;
+}
+else if(c === "modules1"){
+    syllabus = modules1;
+}
+syllabusEl.innerHTML=syllabus.map((m,i)=>`
   <div class="mod">
     <button class="mod-head" aria-expanded="false">
       <span class="mod-num">${String(i+1).padStart(2,'0')}</span>
