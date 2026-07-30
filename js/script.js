@@ -556,3 +556,13 @@ fill:"forwards"
 
 
 // ===============   LAMP JS =================
+
+document.querySelectorAll(".c-card.upcoming").forEach(card => {
+
+    const btn = card.querySelector(".btn");
+
+    if(btn){
+        btn.innerHTML = "Notify Me";
+    }
+
+});

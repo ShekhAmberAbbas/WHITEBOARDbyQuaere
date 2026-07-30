@@ -2613,3 +2613,180 @@ ul{list-style:none}
 .lamp-main{position:relative;display:block;font-family:Inter,sans-serif;font-size:clamp(52px,7vw,140px);font-weight:900;line-height:.9;letter-spacing:-3px;text-transform:uppercase;background:linear-gradient(90deg,#1d05a3 0%,#6d56db 18%,#11acee 36%,#4d3cd0 50%,#401388 65%,#4867d7 82%,#6583e5 100%);background-size:300% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 8s linear infinite}
 .lamp-sub{position:relative;display:block;margin-top:16px;font-size:clamp(11px,1.1vw,18px);font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#dbeafe;opacity:.92}
 @keyframes gradientFlow{from{background-position:0% center}to{background-position:300% center}}
+
+/* Card must be relative */
+.c-card{
+    position: relative;
+    overflow: hidden;
+}
+
+/* Common Badge */
+.c-card::before{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: #fff;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    animation: badgePulse 2s infinite;
+}
+
+/* Live */
+.c-card.live::before{
+    content: "🟢 LIVE";
+    background: #16a34a;
+}
+
+/* New Launch */
+.c-card.new::before{
+    content: "🚀 NEW";
+    background: linear-gradient(90deg,#6d28d9,#ec4899);
+}
+
+/* Coming Soon */
+.c-card.upcoming::before{
+    content: "⏳ COMING SOON";
+    background: #f59e0b;
+    font-size: 8px;
+}
+
+/* Badge Animation */
+@keyframes badgePulse{
+
+    0%{
+        transform: scale(1);
+    }
+
+    50%{
+        transform: scale(1.05);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+
+}
+/* Required */
+.c-card{
+    position:relative;
+    overflow:hidden;
+}
+
+
+/* Overlay */
+.coming-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.78);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    transition:.35s ease;
+
+    z-index:50;
+}
+
+.c-card.upcoming .coming-overlay{
+    opacity:0;
+    transition: opacity 0.8s ease;
+}
+.c-card.c-card.upcoming:hover .coming-overlay{
+    opacity: 1;
+}
+.c-card.upcoming:hover::before{
+     display:inline-block;
+    background:#ff9800;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+    right: 45px;
+    animation:pulse 2s infinite;
+}
+/* Center Content */
+
+.overlay-content{
+
+    text-align:center;
+    padding:20px;
+}
+
+.status{
+
+    display:inline-block;
+    background:#ff9800;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+    opacity: 0;
+    animation:pulse 2s infinite;
+}
+
+.overlay-content h4{
+
+    margin:0;
+    font-size:24px;
+    color:#222;
+}
+
+.overlay-content p{
+
+    margin:12px 0 25px;
+    color:#666;
+    line-height:1.6;
+}
+
+.notify-btn{
+
+    border:none;
+    outline:none;
+    cursor:pointer;
+
+    background:#005495;
+    color:#fff;
+
+    padding:12px 26px;
+    border-radius:12px;
+
+    font-size:15px;
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.notify-btn:hover{
+
+    transform:translateY(-3px);
+    background:#0a66c2;
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.06);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
