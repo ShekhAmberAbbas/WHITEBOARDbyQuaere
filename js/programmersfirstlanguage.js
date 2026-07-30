@@ -7,7 +7,7 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLink
 const modules=[
   {
     t: "Introduction to Web Technologies & HTML Fundamentals",
-    d: "Hour 01",
+    d: "Module 01",
     topics: [
       "Internet & Web",
       "Website vs Web Application",
@@ -20,7 +20,7 @@ const modules=[
   },
   {
     t: "HTML Fundamentals & Head Tags",
-    d: "Hour 02",
+    d: "Module 02",
     topics: [
       "HTML Structure",
       "Elements & Attributes",
@@ -29,7 +29,7 @@ const modules=[
   },
   {
     t: "Text Formatting & Lists",
-    d: "Hour 03",
+    d: "Module 03",
     topics: [
       "Headings & Paragraphs",
       "Text Formatting Tags",
@@ -40,7 +40,7 @@ const modules=[
   },
   {
     t: "Hyperlinks & Multimedia",
-    d: "Hour 04",
+    d: "Module 04",
     topics: [
       "Hyperlinks",
       "Images",
@@ -51,7 +51,7 @@ const modules=[
   },
   {
     t: "Tables, Forms & Semantic HTML",
-    d: "Hour 05-06",
+    d: "Module 05",
     topics: [
       "HTML Tables",
       "HTML Forms",
@@ -62,16 +62,16 @@ const modules=[
   },
   {
     t: "Div & Semantic Tags",
-    d: "Hour 07",
+    d: "Module 06",
     topics: [
       "Div Tag",
-      "Inline & Block Level Elements",
+      "Inline & Block Level Element",
       "Semantic Tags"
     ]
   },
   {
     t: "CSS Fundamentals",
-    d: "Hour 08",
+    d: "Module 07",
     topics: [
       "CSS Introduction",
       "Types of CSS",
@@ -82,19 +82,19 @@ const modules=[
   },
   {
     t: "Styling & CSS Box Model",
-    d: "Hour 09",
+    d: "Module 08",
     topics: [
       "Font Properties",
       "Text Styling",
       "Backgrounds",
       "Borders",
       "Shadows",
-      "CSS Box Model"
+      "Box Model"
     ]
   },
   {
     t: "CSS Layout",
-    d: "Hour 10",
+    d: "Module 09",
     topics: [
       "Display Property",
       "Position Property",
@@ -105,7 +105,7 @@ const modules=[
   },
   {
     t: "Flexbox & Grid",
-    d: "Hour 11",
+    d: "Module 10",
     topics: [
       "Flex Container",
       "Flex Items",
@@ -116,7 +116,7 @@ const modules=[
   },
   {
     t: "Responsive Design",
-    d: "Hour 12",
+    d: "Module 11",
     topics: [
       "Viewport",
       "Media Queries",
@@ -127,7 +127,7 @@ const modules=[
   },
   {
     t: "CSS Animation",
-    d: "Hour 13",
+    d: "Module 12",
     topics: [
       "Transitions",
       "Transform",
@@ -138,7 +138,7 @@ const modules=[
   },
   {
     t: "Bootstrap Basics",
-    d: "Hour 14",
+    d: "Module 13",
     topics: [
       "Bootstrap Introduction",
       "Installation",
@@ -148,15 +148,21 @@ const modules=[
     ]
   },
   {
-    t: "Bootstrap Components & Utilities",
-    d: "Hour 15",
+    t: "Bootstrap Components",
+    d: "Module 14",
     topics: [
       "Navbar",
       "Cards",
       "Buttons",
       "Forms",
       "Carousel",
-      "Modal",
+      "Modal"
+    ]
+  },
+  {
+    t: "Bootstrap Utilities",
+    d: "Module 15",
+    topics: [
       "Spacing Utilities",
       "Color Utilities",
       "Display Utilities",
@@ -165,8 +171,8 @@ const modules=[
     ]
   },
   {
-    t: "Mini Project Development",
-    d: "Hour 16",
+    t: "Mini Project",
+    d: "Module 16",
     topics: [
       "Project Planning",
       "Layout Design",
@@ -176,88 +182,15 @@ const modules=[
     ]
   },
   {
-    t: "Website Project 1",
-    d: "Hour 17",
+    t: "Projects Designing",
+    d: "Module 17",
     topics: [
-      "Landing Page Design",
-      "Responsive Layout",
-      "Bootstrap Components"
-    ]
-  },
-  {
-    t: "Website Project 2",
-    d: "Hour 18",
-    topics: [
-      "Business Website",
-      "Responsive Sections",
-      "Navigation Design"
-    ]
-  },
-  {
-    t: "Website Project 3",
-    d: "Hour 19",
-    topics: [
-      "Portfolio Website",
-      "Animations",
-      "Interactive UI"
-    ]
-  },
-  {
-    t: "Website Project 4",
-    d: "Hour 20",
-    topics: [
-      "Education Website",
-      "Forms",
-      "Bootstrap Grid"
-    ]
-  },
-  {
-    t: "Website Project 5",
-    d: "Hour 21",
-    topics: [
-      "Corporate Website",
-      "Advanced Layout",
-      "Responsive Design"
-    ]
-  },
-  {
-    t: "Code Optimization & Review",
-    d: "Hour 22",
-    topics: [
-      "Clean Code",
-      "CSS Optimization",
-      "Bootstrap Best Practices"
-    ]
-  },
-  {
-    t: "Project Review & Debugging",
-    d: "Hour 23",
-    topics: [
-      "Debugging",
-      "Cross Browser Testing",
-      "Performance Improvements"
-    ]
-  },
-  {
-    t: "Final Project Enhancement",
-    d: "Hour 24",
-    topics: [
-      "UI Improvements",
-      "Responsive Fixes",
-      "Project Completion"
-    ]
-  },
-  {
-    t: "Final Assessment & Portfolio",
-    d: "Hour 25",
-    topics: [
-      "Project Presentation",
-      "Portfolio Building",
-      "Interview Preparation",
-      "Course Wrap-up"
+      "Designing of 05 Websites",
+      "Code Optimization",
+      "Project Review"
     ]
   }
-];
+]
 const syllabusEl=document.getElementById('syllabusList');
 syllabusEl.innerHTML=modules.map((m,i)=>`
   <div class="mod">
