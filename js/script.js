@@ -609,3 +609,24 @@ document.querySelectorAll(".c-card.upcoming").forEach(card => {
     }
 
 });
+
+document.getElementById("notifyForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    alert("🎉 Thank you! We'll notify you when this course becomes available.");
+
+    bootstrap.Modal.getInstance(document.getElementById("notifyModal")).hide();
+
+    this.reset();
+
+});
+
+const modal = document.getElementById("notifyModal");
+
+modal.addEventListener("show.bs.modal", function (event) {
+    const button = event.relatedTarget;
+    const course = button.getAttribute("data-course");
+
+    modal.querySelector("#courseName").value = course;
+});
