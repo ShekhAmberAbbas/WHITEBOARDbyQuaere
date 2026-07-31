@@ -1,5 +1,5 @@
-// mobile nav
-const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+
+var burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
 burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 
@@ -250,8 +250,8 @@ document.querySelectorAll('.mod-head').forEach(btn=>{
 document.querySelector('.mod-head').click();
 
 // ---- scroll reveal ----
-const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const revealEls=document.querySelectorAll('.reveal');
+var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var revealEls=document.querySelectorAll('.reveal');
 if(reduceMotion){revealEls.forEach(el=>el.classList.add('in'));}
 else{
   const io=new IntersectionObserver(entries=>{
@@ -261,7 +261,7 @@ else{
 }
 
 // ---- eyebrow scramble ----
-const scrambleChars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+var scrambleChars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 function scramble(el){
   const final=el.textContent;let iter=0;
   const id=setInterval(()=>{
@@ -288,7 +288,7 @@ document.querySelectorAll('.line-reveal').forEach(el=>{
 });
 
 // ---- animated stat counters (decimal-safe) ----
-const statEls=document.querySelectorAll('.stat strong');
+var statEls=document.querySelectorAll('.stat strong');
 function animateCount(el){
   const raw=el.dataset.count,target=parseFloat(raw),suffix=el.dataset.suffix||'',isDecimal=raw.includes('.');
   const dur=1400,start=performance.now();
@@ -320,4 +320,48 @@ window.addEventListener('load',()=>{
     });
   },{threshold:.3});
   lampIO.observe(title);
+});
+
+const popup = document.getElementById("notifyPopup");
+const closeBtn = document.querySelector(".close-popup");
+const courseInput = document.getElementById("courseName");
+
+document.querySelectorAll(".notify-btn").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        popup.classList.add("show");
+
+        courseInput.value = btn.dataset.course;
+
+    });
+
+});
+
+closeBtn.addEventListener("click", () => {
+
+    popup.classList.remove("show");
+
+});
+
+popup.addEventListener("click", (e) => {
+
+    if(e.target === popup){
+
+        popup.classList.remove("show");
+
+    }
+
+});
+
+document.getElementById("notifyForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    alert("🎉 Thank you! We'll notify you.");
+
+    popup.classList.remove("show");
+
+    this.reset();
+
 });
