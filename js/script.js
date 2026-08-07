@@ -630,3 +630,4 @@ modal.addEventListener("show.bs.modal", function (event) {
 
     modal.querySelector("#courseName").value = course;
 });
+

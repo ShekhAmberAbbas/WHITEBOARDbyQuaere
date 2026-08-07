@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
-<title>Quaere.tech — Learn. Practice. Earn.</title>
+<title>Quaere — Learn. Practice. Earn.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,8 +25,9 @@
     <nav class="nav-links" id="navLinks">
       <div class="nav-item">
         <a href="index.html#courses">Courses</a>
-        <div class="mega">
-          <div><h5>Popular</h5>
+        <!-- <div class="mega">
+          <div>
+            <h5>Popular</h5>
             <a href="#courses" onclick="goToCourses('data')">Data Science</a>
             <a href="#courses" onclick="goToCourses('ai')">AI / ML</a>
             <a href="#courses" onclick="goToCourses('web')">Full Stack Web Dev</a>
@@ -41,7 +42,7 @@
             <a href="#courses" onclick="goToCourses('data')">Business Analytics</a>
             <a href="#courses" class="mega-all" onclick="goToCourses('all')">View all courses →</a>
           </div>
-        </div>
+        </div> -->
       </div>
       <a href="#process">How it works</a>
       <a href="#practice">Practice</a>
@@ -49,7 +50,7 @@
       <a href="#contact">Get Help</a>
     </nav>
     <div class="nav-cta">
-      <a href="#" class="btn btn-ghost">Log in</a>
+      <!-- <a href="#" class="btn btn-ghost">Log in</a> -->
       <a href="enrollment.html" class="btn btn-solid">Enroll Now</a>
     </div>
     <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -491,7 +492,48 @@
           <div class="acc-panel"><p>See exactly where you're strong — and where you're not.</p></div>
         </div>
       </div>
-      <a href="#" class="btn btn-solid">Practice for free →</a>
+      <!-- <a href="#" class="btn btn-solid" data-bs-toggle="modal" data-bs-target="#comingSoonModal">
+    Practice for free →
+</a> -->
+ <button class="notify-btn"
+        data-course="C++"
+        data-bs-toggle="modal"
+        data-bs-target="#comingsoon">
+        Practice for free →
+    
+</button>
+
+<!-- Coming Soon Modal -->
+<div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="comingSoonLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow-lg">
+
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" id="comingSoonLabel">
+                    🚀 Launching Soon
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body text-center py-4">
+                <div class="mb-3" style="font-size: 60px;">🎯</div>
+
+                <h3 class="fw-bold mb-3">Practice Portal-Launching Soon!</h3>
+
+                <p class="text-muted mb-4">
+                    We're working hard to bring you an interactive coding practice platform with
+                    quizzes, challenges, and real-world interview questions.
+                </p>
+
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">
+                    Got it
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+       <!-- <p href="#" class="btn btn-solid btn-block">Coming Soon</p> -->
     </div>
     
     <div class="term-card reveal col-12 col-md-6">
@@ -690,7 +732,7 @@ Powered by Quaere Etechnologies Pvt. Ltd.
                     </span>
 
                     <span class="lamp-sub">
-                        AN LMS BY QUAERE ETECHNOLOGIES PVT. LTD.
+                        LMS BY QUAERE
                     </span>
 
                 </h1>
@@ -782,6 +824,36 @@ Powered by Quaere Etechnologies Pvt. Ltd.
                 </form>
 
             </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="comingsoon" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+
+             <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" id="comingSoonLabel">
+                    🚀 Coming Soon
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body text-center py-4">
+                <div class="mb-3" style="font-size: 60px;">🎯</div>
+
+                <h3 class="fw-bold mb-3">Practice Portal is Coming Soon!</h3>
+
+                <p class="text-muted mb-4">
+                    We're working hard to bring you an interactive coding practice platform with
+                    quizzes, challenges, and real-world interview questions.
+                </p>
+
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">
+                    Got it
+                </button>
+            </div>
+
 
         </div>
     </div>
